@@ -11,9 +11,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
+
 @Data
+@AllArgsConstructor
 @Entity
 @Table(name = "barber_service")
 public class BarberService {
@@ -24,14 +27,14 @@ public class BarberService {
     @Column(unique = true, nullable = false)
     private String name;
     @Column(nullable = false)
-    private Long duration;
+    private Duration duration = Duration.ofMinutes(60);
     @Column(nullable = false)
     private BigDecimal price;
-    @OneToMany(mappedBy = "id.appointment", orphanRemoval = true)
-    private List<Appointment> appointments;
+    private String note;
+    @OneToMany(mappedBy = "barberService")
+    private List<Schedule> appointments;
 
-    public void setDuration(Duration d){
-        this.duration = d.toMinutes();
+    public BarberService() {
     }
 
 }

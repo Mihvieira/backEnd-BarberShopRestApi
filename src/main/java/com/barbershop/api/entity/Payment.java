@@ -14,10 +14,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 @Entity
+@Table(name = "payments")
 public class Payment {
 
     @Id
@@ -33,5 +37,9 @@ public class Payment {
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
+
+
+    public Payment() {
+    }
 
 }
