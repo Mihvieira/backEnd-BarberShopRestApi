@@ -1,8 +1,9 @@
-package com.barbershop.api.dto;
+package com.barbershop.api.dto.payments;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
+import com.barbershop.api.dto.clients.ClientMinDTO;
 import com.barbershop.api.entity.utils.PaymentMethods;
 
 import lombok.AllArgsConstructor;

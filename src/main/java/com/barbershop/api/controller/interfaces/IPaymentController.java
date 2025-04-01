@@ -2,7 +2,7 @@ package com.barbershop.api.controller.interfaces;
 
 import java.util.List;
 
-import com.barbershop.api.dto.PaymentDTO;
+import com.barbershop.api.dto.payments.PaymentDTO;
 
 public interface IPaymentController {
 

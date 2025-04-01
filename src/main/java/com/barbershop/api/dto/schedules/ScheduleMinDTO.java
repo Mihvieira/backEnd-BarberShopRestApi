@@ -1,4 +1,4 @@
-package com.barbershop.api.dto;
+package com.barbershop.api.dto.schedules;
 
 import java.time.OffsetDateTime;
 

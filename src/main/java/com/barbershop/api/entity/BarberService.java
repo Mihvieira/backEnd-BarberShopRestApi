@@ -32,7 +32,7 @@ public class BarberService {
     private BigDecimal price;
     private String note;
     @OneToMany(mappedBy = "barberService")
-    private List<Schedule> appointments;
+    private List<Schedule> schedules;
 
     public BarberService() {
     }
