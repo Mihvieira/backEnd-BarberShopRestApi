@@ -10,9 +10,8 @@ public interface IBarberServiceService {
 
     BarberServiceDTO findBarberServiceById(Long id);
     List<BarberServiceMinDTO> findAllBarberService();
-    List<BarberServiceSchedulesDTO> findBarberServiceSchedules(Long id);
-    BarberServiceDTO insertBarberService(BarberServiceDTO BarberServiceToCreate);
+    BarberServiceSchedulesDTO findBarberServiceSchedules(Long id);
+    BarberServiceDTO insertBarberService(BarberServiceDTO barberServiceToCreate);
     void deleteBarberServiceById(Long id);
-    BarberServiceDTO updateBarberService(BarberServiceDTO BarberServiceToUpdate);
 
 }

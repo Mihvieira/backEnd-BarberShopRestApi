@@ -7,8 +7,8 @@ import com.barbershop.api.dto.clients.ClientMinDTO;
 
 public record ScheduleToCreateDTO(
     Long id,
-    ClientMinDTO client,
-    BarberServiceMinDTO barberService,
+    String clientId,
+    String barberServiceId,
     OffsetDateTime date
 ) {
 

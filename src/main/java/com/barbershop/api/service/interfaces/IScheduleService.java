@@ -14,9 +14,8 @@ public interface IScheduleService {
     ScheduleDTO findScheduleById(Long id);
     List<ScheduleMinDTO> findAllSchedule();
     List<ScheduleMinDTO> findScheduleBeteweenDates(String initial, String end);
-    ScheduleDTO insertSchedule(ScheduleToCreateDTO ScheduleToCreate);
+    ScheduleDTO insertSchedule(ScheduleToCreateDTO scheduleToCreate);
     void deleteScheduleById(Long id);
-    ScheduleDTO updateSchedule(ScheduleDTO ScheduleToUpdate);
     String calcEndTime(OffsetDateTime date, Duration duration);
 
 }

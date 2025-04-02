@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import com.barbershop.api.dto.clients.ClientDTO;
 import com.barbershop.api.dto.clients.ClientMinDTO;
 import com.barbershop.api.dto.clients.ClientPaymentDTO;
@@ -16,82 +18,56 @@ import com.barbershop.api.service.interfaces.IClientService;
 
 import lombok.AllArgsConstructor;
 
+@Service
 @AllArgsConstructor
 public class ClientService implements IClientService {
 
     private final IClientRepository repository;
-    private List<String> atributes = ReflectionUtils.getFieldNames(new Client().getClass());
 
     @Override
     public ClientDTO findClientById(Long id) {
-        try {
-            var entity = repository.findById(id).orElseThrow(NoSuchElementException::new);
-            return ClientMapper.MAPPER.toDTO(entity);
-        } catch (Exception e) {
-            throw new RuntimeException("Error: " + e.getMessage());
-        }
+        var entity = repository.findById(id).orElseThrow(NoSuchElementException::new);
+        return ClientMapper.MAPPER.toDTO(entity);
+
     }
 
     @Override
     public List<ClientMinDTO> findAllClients() {
         List<Client> entities = repository.findAll();
-        return entities.stream().map(x -> ClientMapper.MAPPER.toMinDTO(x)).collect(Collectors.toList());
+        return entities.stream().map(ClientMapper.MAPPER::toMinDTO).collect(Collectors.toList());
     }
 
     @Override
     public ClientDTO insertClient(ClientDTO clientToCreate) {
-        try {
-            Client entity = new Client();
-            for (String atribute : atributes) {
-                if (atribute.equalsIgnoreCase("id") && clientToCreate.getId() != null) {
-                    entity.setId(clientToCreate.getId());
-                }
-                ReflectionUtils.setFieldValue(entity, atribute,
-                        ReflectionUtils.getFieldValue(clientToCreate, atribute));
+        Client entity = new Client();
+        List<String> attributes = ReflectionUtils.getFieldNames(Client.class);
+        for (String attribute : attributes) {
+            if (attribute.equalsIgnoreCase("id") && clientToCreate.getId() != null) {
+                entity.setId(clientToCreate.getId());
             }
-            var savedEntity = repository.save(entity);
-            return ClientMapper.MAPPER.toDTO(savedEntity);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            throw new IllegalArgumentException(e.getMessage());
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e.getMessage());
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            ReflectionUtils.setFieldValue(entity, attribute,
+                    ReflectionUtils.getFieldValue(clientToCreate, attribute));
         }
+        var savedEntity = repository.save(entity);
+        return ClientMapper.MAPPER.toDTO(savedEntity);
     }
 
     @Override
     public void deleteClientById(Long id) {
-        try {
-            repository.deleteById(id);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            throw new IllegalArgumentException(id + " : " + e.getMessage());
-        }
+        repository.deleteById(id);
     }
 
     @Override
     public ClientScheduleDTO findAllClientSchedules(Long id) {
-        try {
-            Client entity = repository.findById(id).orElseThrow(NoSuchElementException::new);
-            entity.getSchedules();
-            return ClientMapper.MAPPER.tClientScheduleDTO(entity);  
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }      
+        Client entity = repository.findById(id).orElseThrow(NoSuchElementException::new);
+        entity.getSchedules();
+        return ClientMapper.MAPPER.tClientScheduleDTO(entity);
     }
 
     @Override
     public ClientPaymentDTO findAllClientPayments(Long id) {
-        try {
-            Client entity = repository.findById(id).orElseThrow(NoSuchElementException::new);
-            entity.getPayments();
-            return ClientMapper.MAPPER.toCPaymentDTO(entity);  
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }  
+        Client entity = repository.findById(id).orElseThrow(NoSuchElementException::new);
+        entity.getPayments();
+        return ClientMapper.MAPPER.toCPaymentDTO(entity);
     }
-
 }

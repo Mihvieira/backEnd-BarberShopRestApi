@@ -10,6 +10,5 @@ public interface IPaymentService {
     List<PaymentDTO> findAllPayments();
     PaymentDTO insertPayment(PaymentDTO paymentToCreate);
     void deletePaymentById(Long id);
-    PaymentDTO updatePayment(PaymentDTO paymentToUpdate);
 
 }
