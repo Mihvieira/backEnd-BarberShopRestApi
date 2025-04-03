@@ -5,9 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import com.barbershop.api.dto.payments.PaymentDTO;
-import com.barbershop.api.entity.Client;
 import com.barbershop.api.entity.Payment;
-import com.barbershop.api.mapper.ClientMapper;
 import com.barbershop.api.mapper.PaymentMapper;
 import com.barbershop.api.repository.IPaymentRepository;
 import com.barbershop.api.service.ReflectionUtils;

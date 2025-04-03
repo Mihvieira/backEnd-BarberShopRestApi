@@ -10,7 +10,7 @@ import com.barbershop.api.dto.clients.ClientPaymentDTO;
 import com.barbershop.api.dto.clients.ClientScheduleDTO;
 import com.barbershop.api.entity.Client;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ClientMapper {
 
     ClientMapper MAPPER = Mappers.getMapper(ClientMapper.class);

@@ -6,8 +6,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import lombok.Data;
 
 @Embeddable
+@Data
 public class WorkingDays {
 
     @Enumerated(EnumType.STRING)
@@ -36,47 +38,6 @@ public class WorkingDays {
         this.openingHour = openingHour;
         this.closingHour = closingHour;
         this.startBreakTime = startBreakTime;
-        this.endBreakTime = endBreakTime;
-    }
-
-
-    public Days getWorkingDay() {
-        return workingDay;
-    }
-
-    public void setWorkingDay(Days workingDay) {
-        this.workingDay = workingDay;
-    }
-
-    public OffsetTime getOpeningHour() {
-        return openingHour;
-    }
-
-    public void setOpeningHour(OffsetTime openingHour) {
-        this.openingHour = openingHour;
-    }
-
-    public OffsetTime getClosingHour() {
-        return closingHour;
-    }
-
-    public void setClosingHour(OffsetTime closingHour) {
-        this.closingHour = closingHour;
-    }
-
-    public OffsetTime getStartBreakTime() {
-        return startBreakTime;
-    }
-
-    public void setStartBreakTime(OffsetTime startBreakTime) {
-        this.startBreakTime = startBreakTime;
-    }
-
-    public OffsetTime getEndBreakTime() {
-        return endBreakTime;
-    }
-
-    public void setEndBreakTime(OffsetTime endBreakTime) {
         this.endBreakTime = endBreakTime;
     }
 }

@@ -5,14 +5,15 @@ import java.util.List;
 import com.barbershop.api.dto.schedules.ScheduleDTO;
 import com.barbershop.api.dto.schedules.ScheduleMinDTO;
 import com.barbershop.api.dto.schedules.ScheduleToCreateDTO;
+import org.springframework.http.ResponseEntity;
 
 public interface IScheduleController {
 
-    ScheduleDTO getScheduleById(Long id);
-    List<ScheduleMinDTO> getAllSchedule();
-    List<ScheduleMinDTO> getScheduleBeteweenDates(String initial, String end);
-    ScheduleDTO createSchedule(ScheduleToCreateDTO ScheduleToCreate);
-    void deleteScheduleById(Long id);
-    ScheduleDTO updateSchedule(ScheduleDTO ScheduleToUpdate);
+    ResponseEntity<ScheduleDTO> getScheduleById(Long id);
+    ResponseEntity<List<ScheduleMinDTO>> getAllSchedule();
+    ResponseEntity<List<ScheduleMinDTO>> getScheduleBeteweenDates(String initial, String end);
+    ResponseEntity<ScheduleDTO> createSchedule(ScheduleToCreateDTO scheduleToCreate);
+    ResponseEntity<Void> deleteScheduleById(Long id);
+    ResponseEntity<ScheduleDTO> updateSchedule(ScheduleToCreateDTO scheduleToUpdate);
 
 }

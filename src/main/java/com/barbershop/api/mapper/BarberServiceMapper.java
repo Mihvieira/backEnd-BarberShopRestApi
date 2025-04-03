@@ -9,7 +9,7 @@ import com.barbershop.api.dto.barberServices.BarberServiceMinDTO;
 import com.barbershop.api.dto.barberServices.BarberServiceSchedulesDTO;
 import com.barbershop.api.entity.BarberService;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface BarberServiceMapper {
 
     BarberServiceMapper MAPPER = Mappers.getMapper(BarberServiceMapper.class);

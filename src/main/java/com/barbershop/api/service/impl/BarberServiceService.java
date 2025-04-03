@@ -1,6 +1,5 @@
 package com.barbershop.api.service.impl;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -9,7 +8,6 @@ import com.barbershop.api.dto.barberServices.BarberServiceDTO;
 import com.barbershop.api.dto.barberServices.BarberServiceMinDTO;
 import com.barbershop.api.dto.barberServices.BarberServiceSchedulesDTO;
 import com.barbershop.api.entity.BarberService;
-import com.barbershop.api.entity.Client;
 import com.barbershop.api.mapper.BarberServiceMapper;
 import com.barbershop.api.repository.IBarberServiceRepository;
 import com.barbershop.api.service.ReflectionUtils;

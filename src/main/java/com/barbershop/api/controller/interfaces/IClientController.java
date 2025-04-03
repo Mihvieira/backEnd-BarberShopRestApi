@@ -6,15 +6,16 @@ import com.barbershop.api.dto.clients.ClientDTO;
 import com.barbershop.api.dto.clients.ClientMinDTO;
 import com.barbershop.api.dto.clients.ClientPaymentDTO;
 import com.barbershop.api.dto.clients.ClientScheduleDTO;
+import org.springframework.http.ResponseEntity;
 
 public interface IClientController {
     
-    ClientDTO getClientById(Long id);
-    List<ClientMinDTO> getAllClients();
-    ClientDTO createClient(ClientDTO clientToCreate);
-    void deleteClientById(Long id);
-    ClientDTO updateClient(ClientDTO clientToUpdate);
-    ClientScheduleDTO getAllClientSchedules(Long id);
-    ClientPaymentDTO getAllClientPayments(Long id);
+    ResponseEntity<ClientDTO> getClientById(Long id);
+    ResponseEntity<List<ClientMinDTO>> getAllClients();
+    ResponseEntity<ClientDTO> createClient(ClientDTO clientToCreate);
+    ResponseEntity<Void> deleteClientById(Long id);
+    ResponseEntity<ClientDTO> updateClient(ClientDTO clientToUpdate);
+    ResponseEntity<ClientScheduleDTO> getAllClientSchedules(Long id);
+    ResponseEntity<ClientPaymentDTO> getAllClientPayments(Long id);
 
 }

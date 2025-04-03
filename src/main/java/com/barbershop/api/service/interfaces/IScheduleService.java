@@ -1,7 +1,5 @@
 package com.barbershop.api.service.interfaces;
 
-import java.time.Duration;
-import java.time.OffsetDateTime;
 import java.util.List;
 
 import com.barbershop.api.dto.schedules.ScheduleDTO;
@@ -13,9 +11,8 @@ public interface IScheduleService {
 
     ScheduleDTO findScheduleById(Long id);
     List<ScheduleMinDTO> findAllSchedule();
-    List<ScheduleMinDTO> findScheduleBeteweenDates(String initial, String end);
+    List<ScheduleMinDTO> findScheduleBetweenDates(String initial, String end);
     ScheduleDTO insertSchedule(ScheduleToCreateDTO scheduleToCreate);
     void deleteScheduleById(Long id);
-    String calcEndTime(OffsetDateTime date, Duration duration);
 
 }

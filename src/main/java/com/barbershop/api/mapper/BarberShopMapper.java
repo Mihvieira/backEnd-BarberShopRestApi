@@ -9,7 +9,7 @@ import com.barbershop.api.dto.barberShop.BarberShopDTO;
 import com.barbershop.api.entity.BarberShop;
 import com.barbershop.api.entity.utils.WorkingDays;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface BarberShopMapper {
 
     BarberShopMapper MAPPER = Mappers.getMapper(BarberShopMapper.class);
