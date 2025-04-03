@@ -9,11 +9,18 @@ import com.barbershop.api.dto.clients.ClientScheduleDTO;
 
 public interface IClientService {
 
-    ClientDTO findClientById(Long id);
-    List<ClientMinDTO> findAllClients();
-    ClientDTO insertClient(ClientDTO clientToCreate);
-    void deleteClientById(Long id);
-    ClientScheduleDTO findAllClientSchedules(Long id);
-    ClientPaymentDTO findAllClientPayments(Long id);
+    ClientDTO findById(Long id);
+
+    List<ClientMinDTO> findAll();
+
+    ClientDTO insert(ClientDTO clientToCreate);
+
+    void delete(Long id);
+
+    ClientScheduleDTO findSchedules(Long id);
+
+    ClientPaymentDTO findPayments(Long id);
+
+    ClientDTO update(ClientDTO clientToUpdate);
 
 }

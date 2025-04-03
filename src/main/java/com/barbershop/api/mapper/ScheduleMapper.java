@@ -1,21 +1,15 @@
 package com.barbershop.api.mapper;
 
 import java.time.OffsetDateTime;
-import java.util.NoSuchElementException;
-import com.barbershop.api.entity.BarberService;
+
 import com.barbershop.api.entity.Client;
-import com.barbershop.api.service.impl.ScheduleService;
-import org.hibernate.service.spi.InjectService;
-import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 import com.barbershop.api.dto.schedules.ScheduleDTO;
 import com.barbershop.api.dto.schedules.ScheduleMinDTO;
 import com.barbershop.api.dto.schedules.ScheduleToCreateDTO;
 import com.barbershop.api.entity.Schedule;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper(componentModel = "spring", uses = {ClientMapper.class, BarberServiceMapper.class})
 public interface ScheduleMapper {
@@ -45,16 +39,11 @@ public interface ScheduleMapper {
         return client;
     }
 
-    @Named("mapBarberService")
-    default BarberService mapBarberService(Long barberServiceId, @Context ScheduleService scheduleService) {
-        return scheduleService.getServiceRepository().findById(barberServiceId).orElseThrow(NoSuchElementException::new);
+    default String calcStartTime(OffsetDateTime date) {
+        return date != null ? date.getHour() + ":" + date.getMinute() : null;
     }
 
-    public default String calcStartTime(OffsetDateTime date) {
-        return date != null ? date.getHour() + ":"+ date.getMinute(): null;
-    }
-
-    public default String calcEndTime(OffsetDateTime date, java.time.Duration duration) {
+    default String calcEndTime(OffsetDateTime date, java.time.Duration duration) {
         if (date != null && duration != null) {
             OffsetDateTime endTime = date.plus(duration);
             return endTime.getHour() + ":" + endTime.getMinute();

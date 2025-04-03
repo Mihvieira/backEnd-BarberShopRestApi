@@ -1,6 +1,6 @@
 package com.barbershop.api.entity.utils;
 
-public enum AppointmentStatus {
+public enum ScheduleStatus {
 
     SCHEDULED,
     CANCELED,

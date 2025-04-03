@@ -13,17 +13,17 @@ public class GlobalExceptionHandler {
     public static final String DEFAULT_ERROR_VIEW = "Error: ";
 
     @ExceptionHandler(value = NoSuchFieldException.class)
-    public ResponseEntity<String> handleNoSuchFieldException(NoSuchElementException ex){
+    public ResponseEntity<String> handleNoSuchFieldException(NoSuchElementException ex) {
         return new ResponseEntity<>(DEFAULT_ERROR_VIEW + "Elemento não encontrado " + ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = IllegalArgumentException.class)
-    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex){
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
         return new ResponseEntity<>(DEFAULT_ERROR_VIEW + "Argumento inválido " + ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<String> handleGlobalException(Exception ex){
+    public ResponseEntity<String> handleGlobalException(Exception ex) {
         return new ResponseEntity<>(DEFAULT_ERROR_VIEW + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

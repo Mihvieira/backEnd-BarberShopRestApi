@@ -10,10 +10,15 @@ import org.springframework.http.ResponseEntity;
 public interface IScheduleController {
 
     ResponseEntity<ScheduleDTO> getScheduleById(Long id);
+
     ResponseEntity<List<ScheduleMinDTO>> getAllSchedule();
-    ResponseEntity<List<ScheduleMinDTO>> getScheduleBeteweenDates(String initial, String end);
+
+    ResponseEntity<List<ScheduleMinDTO>> getScheduleBetweenDates(String initial, String end);
+
     ResponseEntity<ScheduleDTO> createSchedule(ScheduleToCreateDTO scheduleToCreate);
+
     ResponseEntity<Void> deleteScheduleById(Long id);
+
     ResponseEntity<ScheduleDTO> updateSchedule(ScheduleToCreateDTO scheduleToUpdate);
 
 }

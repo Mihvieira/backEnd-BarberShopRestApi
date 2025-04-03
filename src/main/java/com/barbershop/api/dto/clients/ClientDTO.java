@@ -1,24 +1,14 @@
 package com.barbershop.api.dto.clients;
 
 
+import jakarta.annotation.Nullable;
 import lombok.Data;
 
-@Data
-public class ClientDTO{
-
-    private Long id;
-    private String name;
-    private String phone;
-    private String email;
-    
-    public ClientDTO() {
-    }
-
-    public ClientDTO(String name, String phone, String email) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-    }
-    
-
+public record ClientDTO (
+        @Nullable
+        Long id,
+        String name,
+        String phone,
+        String email
+){
 }

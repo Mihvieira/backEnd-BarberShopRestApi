@@ -1,7 +1,7 @@
 package com.barbershop.api.dto.clients;
 
 public record ClientMinDTO(
-    Long id,
-    String name
+        Long id,
+        String name
 ) {
 }

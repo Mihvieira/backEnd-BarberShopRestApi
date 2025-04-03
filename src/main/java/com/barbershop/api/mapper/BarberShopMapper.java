@@ -3,11 +3,12 @@ package com.barbershop.api.mapper;
 import java.util.Set;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import com.barbershop.api.dto.barberShop.BarberShopDTO;
 import com.barbershop.api.entity.BarberShop;
-import com.barbershop.api.entity.utils.WorkingDays;
+import com.barbershop.api.entity.WorkingDays;
 
 @Mapper(componentModel = "spring")
 public interface BarberShopMapper {
@@ -16,6 +17,7 @@ public interface BarberShopMapper {
 
     BarberShopDTO toDTO(BarberShop barberShop);
 
+    @Mapping(target = "barberShop.id", ignore = true)
     BarberShop toEntity(BarberShopDTO barberShopDTO);
 
     default Set<WorkingDays> map(WorkingDays workingDays) {

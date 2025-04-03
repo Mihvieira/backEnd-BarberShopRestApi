@@ -3,22 +3,18 @@ package com.barbershop.api.dto.barberServices;
 import java.math.BigDecimal;
 import java.time.Duration;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-@Data
-@AllArgsConstructor
-public class BarberServiceDTO {
-
-    private Long id;
-    private String name;
-    private Duration duration;
-    private BigDecimal price;
-    private String note;
+import lombok.NonNull;
 
 
-    public BarberServiceDTO() {
-    }
-
-
-}
+public record BarberServiceDTO (
+        @Nullable
+        Long id,
+        String name,
+        Duration duration,
+        BigDecimal price,
+        String note
+){}

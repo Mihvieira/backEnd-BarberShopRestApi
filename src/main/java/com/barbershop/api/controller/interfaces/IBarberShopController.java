@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 public interface IBarberShopController {
 
     ResponseEntity<BarberShopDTO> getProfile();
+
     ResponseEntity<BarberShopDTO> updaBarberShop(BarberShopDTO barberShop);
 
 }

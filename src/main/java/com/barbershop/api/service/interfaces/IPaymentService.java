@@ -6,9 +6,14 @@ import com.barbershop.api.dto.payments.PaymentDTO;
 
 public interface IPaymentService {
 
-    PaymentDTO findPaymentById(Long id);
-    List<PaymentDTO> findAllPayments();
-    PaymentDTO insertPayment(PaymentDTO paymentToCreate);
-    void deletePaymentById(Long id);
+    PaymentDTO findById(Long id);
+
+    List<PaymentDTO> findAll();
+
+    PaymentDTO insert(PaymentDTO paymentToCreate);
+
+    void delete(Long id);
+
+    PaymentDTO update(PaymentDTO paymentToUpdate);
 
 }

@@ -1,7 +1,12 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Date
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.4'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.flywaydb.flyway' version '9.8.1'
 }
 
 group = 'com.barbershop'
@@ -27,7 +32,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation'org.springframework.boot:spring-boot-starter-validation'
 	implementation'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5'
 	implementation'org.mapstruct:mapstruct:1.6.3'
+	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.flywaydb:flyway-mysql'
 	developmentOnly'org.springframework.boot:spring-boot-devtools'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
@@ -41,4 +49,14 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+tasks.named("build") {
+	doLast {
+		def trigger = file("src/main/resources/trigger.txt")
+		if (!trigger.exists()) {
+			trigger.createNewFile()
+		}
+		trigger.text = new Date().time.toString()
+	}
 }

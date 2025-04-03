@@ -9,10 +9,16 @@ import com.barbershop.api.dto.schedules.ScheduleToCreateDTO;
 
 public interface IScheduleService {
 
-    ScheduleDTO findScheduleById(Long id);
-    List<ScheduleMinDTO> findAllSchedule();
-    List<ScheduleMinDTO> findScheduleBetweenDates(String initial, String end);
-    ScheduleDTO insertSchedule(ScheduleToCreateDTO scheduleToCreate);
-    void deleteScheduleById(Long id);
+    ScheduleDTO findById(Long id);
+
+    List<ScheduleMinDTO> findAll();
+
+    List<ScheduleMinDTO> findBetweenDates(String initial, String end);
+
+    ScheduleDTO insert(ScheduleToCreateDTO scheduleToCreate);
+
+    void delete(Long id);
+
+    ScheduleDTO update(ScheduleToCreateDTO scheduleToUpdate);
 
 }

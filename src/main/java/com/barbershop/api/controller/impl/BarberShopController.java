@@ -24,7 +24,7 @@ public class BarberShopController implements IBarberShopController {
     @Override
     @PutMapping
     public ResponseEntity<BarberShopDTO> updaBarberShop(@RequestBody BarberShopDTO barberShop) {
-        var entity = service.updaBarberShop(barberShop);
+        var entity = service.update(barberShop);
         return ResponseEntity.ok(entity);
     }
 }

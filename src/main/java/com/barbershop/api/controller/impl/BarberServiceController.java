@@ -23,28 +23,28 @@ public class BarberServiceController implements IBarberServiceController {
     @Override
     @GetMapping(value = "/{id}")
     public ResponseEntity<BarberServiceDTO> getBarberServiceById(@PathVariable Long id) {
-        var entity = service.findBarberServiceById(id);
+        var entity = service.findById(id);
         return ResponseEntity.ok(entity);
     }
 
     @Override
     @GetMapping
     public ResponseEntity<List<BarberServiceMinDTO>> getAllBarberService() {
-        var entities = service.findAllBarberService();
+        var entities = service.findAll();
         return ResponseEntity.ok(entities);
     }
 
     @Override
     @GetMapping(value = "/schedules/{id}")
     public ResponseEntity<BarberServiceSchedulesDTO> getBarberServiceSchedules(@PathVariable Long id) {
-        var schedules = service.findBarberServiceSchedules(id);
+        var schedules = service.findSchedules(id);
         return ResponseEntity.ok(schedules);
     }
 
     @Override
     @PostMapping
     public ResponseEntity<BarberServiceDTO> createBarberService(@RequestBody BarberServiceDTO barberServiceToCreate) {
-        var entity = service.insertBarberService(barberServiceToCreate);
+        var entity = service.insert(barberServiceToCreate);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(entity)
@@ -55,14 +55,14 @@ public class BarberServiceController implements IBarberServiceController {
     @Override
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Void> deleteBarberServiceById(@PathVariable Long id) {
-        service.deleteBarberServiceById(id);
+        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @Override
     @PutMapping
     public ResponseEntity<BarberServiceDTO> updateBarberService(@RequestBody BarberServiceDTO barberServiceToUpdate) {
-        var entity = service.insertBarberService(barberServiceToUpdate);
+        var entity = service.update(barberServiceToUpdate);
         return ResponseEntity.ok(entity);
     }
 }

@@ -23,28 +23,28 @@ public class ScheduleController implements IScheduleController {
     @Override
     @GetMapping(value = "/{id}")
     public ResponseEntity<ScheduleDTO> getScheduleById(@PathVariable Long id) {
-        var entity = service.findScheduleById(id);
+        var entity = service.findById(id);
         return ResponseEntity.ok(entity);
     }
 
     @Override
     @GetMapping
     public ResponseEntity<List<ScheduleMinDTO>> getAllSchedule() {
-        var entities = service.findAllSchedule();
+        var entities = service.findAll();
         return ResponseEntity.ok(entities);
     }
 
     @Override
     @GetMapping(value = "/date/{initial}-{end}")
-    public ResponseEntity<List<ScheduleMinDTO>> getScheduleBeteweenDates(@PathVariable String initial, @PathVariable String end) {
-        var entities = service.findScheduleBetweenDates(initial, end);
+    public ResponseEntity<List<ScheduleMinDTO>> getScheduleBetweenDates(@PathVariable String initial, @PathVariable String end) {
+        var entities = service.findBetweenDates(initial, end);
         return ResponseEntity.ok(entities);
     }
 
     @Override
     @PostMapping
     public ResponseEntity<ScheduleDTO> createSchedule(@RequestBody ScheduleToCreateDTO scheduleToCreate) {
-        var entity = service.insertSchedule(scheduleToCreate);
+        var entity = service.insert(scheduleToCreate);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(entity)
@@ -55,14 +55,14 @@ public class ScheduleController implements IScheduleController {
     @Override
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Void> deleteScheduleById(@PathVariable Long id) {
-        service.deleteScheduleById(id);
+        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @Override
     @PutMapping
     public ResponseEntity<ScheduleDTO> updateSchedule(@RequestBody ScheduleToCreateDTO scheduleToUpdate) {
-        var entity = service.insertSchedule(scheduleToUpdate);
+        var entity = service.update(scheduleToUpdate);
         return ResponseEntity.ok(entity);
     }
 }

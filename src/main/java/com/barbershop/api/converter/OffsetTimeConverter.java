@@ -2,6 +2,7 @@ package com.barbershop.api.converter;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
+
 import java.time.OffsetTime;
 import java.time.format.DateTimeFormatter;
 

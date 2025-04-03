@@ -5,13 +5,20 @@ import java.util.List;
 import com.barbershop.api.dto.barberServices.BarberServiceDTO;
 import com.barbershop.api.dto.barberServices.BarberServiceMinDTO;
 import com.barbershop.api.dto.barberServices.BarberServiceSchedulesDTO;
+import com.barbershop.api.entity.BarberService;
 
 public interface IBarberServiceService {
 
-    BarberServiceDTO findBarberServiceById(Long id);
-    List<BarberServiceMinDTO> findAllBarberService();
-    BarberServiceSchedulesDTO findBarberServiceSchedules(Long id);
-    BarberServiceDTO insertBarberService(BarberServiceDTO barberServiceToCreate);
-    void deleteBarberServiceById(Long id);
+    BarberServiceDTO findById(Long id);
+
+    List<BarberServiceMinDTO> findAll();
+
+    BarberServiceSchedulesDTO findSchedules(Long id);
+
+    BarberServiceDTO insert(BarberServiceDTO barberServiceToCreate);
+
+    void delete(Long id);
+
+    BarberServiceDTO update(BarberServiceDTO barberServiceToUpdate);
 
 }

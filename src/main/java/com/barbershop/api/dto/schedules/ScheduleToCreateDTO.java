@@ -1,12 +1,14 @@
 package com.barbershop.api.dto.schedules;
 
+import jakarta.annotation.Nullable;
+
 import java.time.OffsetDateTime;
 
 public record ScheduleToCreateDTO(
-    Long id,
-    String clientId,
-    String barberServiceId,
-    OffsetDateTime date
+        @Nullable Long id,
+        Long clientId,
+        Long barberServiceId,
+        OffsetDateTime date
 ) {
 
 }

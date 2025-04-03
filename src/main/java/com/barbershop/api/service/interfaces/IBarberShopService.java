@@ -5,6 +5,7 @@ import com.barbershop.api.dto.barberShop.BarberShopDTO;
 public interface IBarberShopService {
 
     BarberShopDTO findProfile();
-    BarberShopDTO updaBarberShop(BarberShopDTO barberShopToUpdate);
+
+    BarberShopDTO update(BarberShopDTO barberShopToUpdate);
 
 }

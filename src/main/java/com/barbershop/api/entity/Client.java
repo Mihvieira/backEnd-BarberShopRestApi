@@ -23,7 +23,7 @@ public class Client {
     private String name;
     @Column(nullable = false, unique = true)
     private String phone;
-    @Column(unique=true)
+    @Column(unique = true)
     private String email;
     @OneToMany(mappedBy = "client")
     private List<Schedule> schedules;

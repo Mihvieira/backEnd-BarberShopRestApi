@@ -21,7 +21,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Entity
-@Table(name = "payments")
 public class Payment {
 
     @Id

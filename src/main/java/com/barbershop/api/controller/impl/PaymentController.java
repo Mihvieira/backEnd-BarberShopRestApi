@@ -21,21 +21,21 @@ public class PaymentController implements IPaymentController {
     @Override
     @GetMapping(value = "/{id}")
     public ResponseEntity<PaymentDTO> getPaymentById(Long id) {
-        var entity = service.findPaymentById(id);
+        var entity = service.findById(id);
         return ResponseEntity.ok(entity);
     }
 
     @Override
     @GetMapping
     public ResponseEntity<List<PaymentDTO>> getAllPayments() {
-        var entities = service.findAllPayments();
+        var entities = service.findAll();
         return ResponseEntity.ok(entities);
     }
 
     @Override
     @PostMapping
     public ResponseEntity<PaymentDTO> createPayment(PaymentDTO paymentToCreate) {
-        var entity = service.insertPayment(paymentToCreate);
+        var entity = service.insert(paymentToCreate);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(entity)
@@ -46,14 +46,14 @@ public class PaymentController implements IPaymentController {
     @Override
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Void> deletePaymentById(Long id) {
-        service.deletePaymentById(id);
+        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @Override
     @PutMapping
     public ResponseEntity<PaymentDTO> updatePayment(PaymentDTO paymentToUpdate) {
-        var entity = service.insertPayment(paymentToUpdate);
+        var entity = service.update(paymentToUpdate);
         return ResponseEntity.ok(entity);
     }
 }

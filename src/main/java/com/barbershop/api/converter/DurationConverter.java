@@ -4,7 +4,7 @@ import java.time.Duration;
 
 import jakarta.persistence.AttributeConverter;
 
-public class DurationConverter implements AttributeConverter<Duration, Long>{
+public class DurationConverter implements AttributeConverter<Duration, Long> {
 
     @Override
     public Long convertToDatabaseColumn(Duration duration) {
@@ -15,5 +15,5 @@ public class DurationConverter implements AttributeConverter<Duration, Long>{
     public Duration convertToEntityAttribute(Long minutes) {
         return minutes != null ? Duration.ofMinutes(minutes) : null;
     }
-    
+
 }

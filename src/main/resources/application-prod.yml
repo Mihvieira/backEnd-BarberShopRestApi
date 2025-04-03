@@ -12,6 +12,10 @@ spring:
     hibernate:
       ddl-auto: validate
       format_sql: true
+    flyway:
+      enable: true
+      baseline-on-migrate: true
+      locations: db/migration,classpath:db/callback
 logging:
   level:
     ROOT: error

@@ -10,54 +10,56 @@ import com.barbershop.api.dto.barberServices.BarberServiceSchedulesDTO;
 import com.barbershop.api.entity.BarberService;
 import com.barbershop.api.mapper.BarberServiceMapper;
 import com.barbershop.api.repository.IBarberServiceRepository;
-import com.barbershop.api.service.ReflectionUtils;
 import com.barbershop.api.service.interfaces.IBarberServiceService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
 @Service
-public class BarberServiceService implements IBarberServiceService{
+public class BarberServiceService implements IBarberServiceService {
 
     private final IBarberServiceRepository repository;
 
     @Override
-    public BarberServiceDTO findBarberServiceById(Long id) {
+    public BarberServiceDTO findById(Long id) {
         var entity = repository.findById(id).orElseThrow(NoSuchElementException::new);
         return BarberServiceMapper.MAPPER.toDTO(entity);
     }
 
     @Override
-    public List<BarberServiceMinDTO> findAllBarberService() {
+    public List<BarberServiceMinDTO> findAll() {
         List<BarberService> entities = repository.findAll();
         return entities.stream().map(BarberServiceMapper.MAPPER::toMinDTO).collect(Collectors.toList());
     }
 
     @Override
-    public BarberServiceSchedulesDTO findBarberServiceSchedules(Long id) {
+    public BarberServiceSchedulesDTO findSchedules(Long id) {
         var entity = repository.findById(id).orElseThrow(NoSuchElementException::new);
         entity.getSchedules();
         return BarberServiceMapper.MAPPER.toServiceScheduleDTO(entity);
     }
 
     @Override
-    public BarberServiceDTO insertBarberService(BarberServiceDTO barberServiceToCreate) {
-        BarberService entity = new BarberService();
-        List<String> attributes = ReflectionUtils.getFieldNames(BarberService.class);
-        for (String attribute : attributes) {
-            if (attribute.equalsIgnoreCase("id") && barberServiceToCreate.getId() != null) {
-                entity.setId(barberServiceToCreate.getId());
-            }
-            ReflectionUtils.setFieldValue(entity, attribute,
-                    ReflectionUtils.getFieldValue(barberServiceToCreate, attribute));
-        }
+    @Transactional
+    public BarberServiceDTO insert(BarberServiceDTO barberServiceToCreate) {
+        BarberService entity = BarberServiceMapper.MAPPER.toEntity(barberServiceToCreate);
         var savedEntity = repository.save(entity);
         return BarberServiceMapper.MAPPER.toDTO(savedEntity);
     }
 
     @Override
-    public void deleteBarberServiceById(Long id) {
+    @Transactional
+    public void delete(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public BarberServiceDTO update(BarberServiceDTO barberServiceToUpdate) {
+        if (barberServiceToUpdate.id() == null) {
+            throw new RuntimeException("Id must not be null");
+        }
+        return insert(barberServiceToUpdate);
     }
 
 }

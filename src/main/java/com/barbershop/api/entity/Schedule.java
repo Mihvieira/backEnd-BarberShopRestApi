@@ -2,7 +2,7 @@ package com.barbershop.api.entity;
 
 import java.time.OffsetDateTime;
 
-import com.barbershop.api.entity.utils.AppointmentStatus;
+import com.barbershop.api.entity.utils.ScheduleStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +20,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Entity
-@Table(name = "schedules")
 public class Schedule {
 
     @Id
@@ -35,7 +34,7 @@ public class Schedule {
     @Column(nullable = false)
     private OffsetDateTime date;
     @Enumerated(EnumType.STRING)
-    private AppointmentStatus status = AppointmentStatus.SCHEDULED;
+    private ScheduleStatus status = ScheduleStatus.SCHEDULED;
 
 
     public Schedule() {

@@ -15,7 +15,7 @@ public interface BarberServiceMapper {
     BarberServiceMapper MAPPER = Mappers.getMapper(BarberServiceMapper.class);
 
     BarberServiceDTO toDTO(BarberService barberService);
-    
+
     @Mapping(target = "schedules", ignore = true)
     BarberService toEntity(BarberServiceDTO barberServiceDTO);
 
