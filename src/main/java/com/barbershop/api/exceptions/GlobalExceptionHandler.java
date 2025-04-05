@@ -1,11 +1,11 @@
 package com.barbershop.api.exceptions;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import java.util.NoSuchElementException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -14,19 +14,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = NoSuchFieldException.class)
     public ResponseEntity<String> handleNoSuchFieldException(NoSuchElementException ex) {
-        ex.printStackTrace();
         return new ResponseEntity<>(DEFAULT_ERROR_VIEW + "Elemento não encontrado " + ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
-        ex.printStackTrace();
         return new ResponseEntity<>(DEFAULT_ERROR_VIEW + "Argumento inválido " + ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<String> handleGlobalException(Exception ex) {
-        ex.printStackTrace();
         return new ResponseEntity<>(DEFAULT_ERROR_VIEW + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
