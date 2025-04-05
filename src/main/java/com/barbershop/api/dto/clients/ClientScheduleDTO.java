@@ -2,12 +2,12 @@ package com.barbershop.api.dto.clients;
 
 import java.util.List;
 
-import com.barbershop.api.entity.Schedule;
+import com.barbershop.api.dto.schedules.ScheduleMinDTO;
 
 public record ClientScheduleDTO(
         Long id,
         String name,
-        List<Schedule> schedules
+        List<ScheduleMinDTO> schedules
 ) {
 
 }

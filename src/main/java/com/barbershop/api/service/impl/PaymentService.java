@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import com.barbershop.api.dto.payments.PaymentDTO;
+import com.barbershop.api.dto.payments.PaymentToCreateDTO;
 import com.barbershop.api.entity.Payment;
 import com.barbershop.api.mapper.PaymentMapper;
 import com.barbershop.api.repository.IPaymentRepository;
@@ -33,8 +34,8 @@ public class PaymentService implements IPaymentService {
 
     @Override
     @Transactional
-    public PaymentDTO insert(PaymentDTO paymentToCreate) {
-        Payment entity = PaymentMapper.MAPPER.toEntity(paymentToCreate);
+    public PaymentDTO insert(PaymentToCreateDTO paymentToCreate) {
+        Payment entity = PaymentMapper.MAPPER.toCreateEntity(paymentToCreate);
         var savedEntity = repository.save(entity);
         return PaymentMapper.MAPPER.toDTO(savedEntity);
     }
@@ -50,7 +51,7 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public PaymentDTO update(PaymentDTO paymentToUpdate) {
+    public PaymentDTO update(PaymentToCreateDTO paymentToUpdate) {
         if (paymentToUpdate.id() == null) {
             throw new RuntimeException("Id must not be null");
         }

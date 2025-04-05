@@ -14,16 +14,19 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = NoSuchFieldException.class)
     public ResponseEntity<String> handleNoSuchFieldException(NoSuchElementException ex) {
+        ex.printStackTrace();
         return new ResponseEntity<>(DEFAULT_ERROR_VIEW + "Elemento não encontrado " + ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+        ex.printStackTrace();
         return new ResponseEntity<>(DEFAULT_ERROR_VIEW + "Argumento inválido " + ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<String> handleGlobalException(Exception ex) {
+        ex.printStackTrace();
         return new ResponseEntity<>(DEFAULT_ERROR_VIEW + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

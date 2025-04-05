@@ -1,5 +1,6 @@
 package com.barbershop.api.service.interfaces;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import com.barbershop.api.dto.schedules.ScheduleDTO;
@@ -13,7 +14,7 @@ public interface IScheduleService {
 
     List<ScheduleMinDTO> findAll();
 
-    List<ScheduleMinDTO> findBetweenDates(String initial, String end);
+    List<ScheduleMinDTO> findBetweenDates(OffsetDateTime initial, OffsetDateTime end);
 
     ScheduleDTO insert(ScheduleToCreateDTO scheduleToCreate);
 

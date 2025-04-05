@@ -1,10 +1,15 @@
 package com.barbershop.api.entity;
 
-import jakarta.persistence.*;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.Set;
 
 @Entity
 @Table(name = "barber_shop")
@@ -18,7 +23,7 @@ public class BarberShop {
     private String name;
     private String address;
     @OneToMany(mappedBy = "barberShop")
-    private Set<WorkingDays> workingDays;
+    private List<WorkingDays> workingDays;
 
     public BarberShop() {
     }

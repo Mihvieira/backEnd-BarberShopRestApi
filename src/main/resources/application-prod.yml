@@ -6,16 +6,15 @@ spring:
     url: jdbc:mysql://${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+  flyway:
+    enable: true
+    baseline-on-migrate: true
+    locations: db/migration,classpath:db/callback
   jpa:
     database: MYSQL
     show-sql: true
     hibernate:
-      ddl-auto: validate
       format_sql: true
-    flyway:
-      enable: true
-      baseline-on-migrate: true
-      locations: db/migration,classpath:db/callback
 logging:
   level:
     ROOT: error

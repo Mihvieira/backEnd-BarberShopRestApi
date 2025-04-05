@@ -2,6 +2,7 @@ package com.barbershop.api.controller.impl;
 
 import com.barbershop.api.controller.interfaces.IPaymentController;
 import com.barbershop.api.dto.payments.PaymentDTO;
+import com.barbershop.api.dto.payments.PaymentToCreateDTO;
 import com.barbershop.api.service.interfaces.IPaymentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class PaymentController implements IPaymentController {
 
     @Override
     @GetMapping(value = "/{id}")
-    public ResponseEntity<PaymentDTO> getPaymentById(Long id) {
+    public ResponseEntity<PaymentDTO> getPaymentById(@PathVariable Long id) {
         var entity = service.findById(id);
         return ResponseEntity.ok(entity);
     }
@@ -34,7 +35,7 @@ public class PaymentController implements IPaymentController {
 
     @Override
     @PostMapping
-    public ResponseEntity<PaymentDTO> createPayment(PaymentDTO paymentToCreate) {
+    public ResponseEntity<PaymentDTO> createPayment(@RequestBody PaymentToCreateDTO paymentToCreate) {
         var entity = service.insert(paymentToCreate);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -45,14 +46,14 @@ public class PaymentController implements IPaymentController {
 
     @Override
     @DeleteMapping(value = "{id}")
-    public ResponseEntity<Void> deletePaymentById(Long id) {
+    public ResponseEntity<Void> deletePaymentById(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @Override
     @PutMapping
-    public ResponseEntity<PaymentDTO> updatePayment(PaymentDTO paymentToUpdate) {
+    public ResponseEntity<PaymentDTO> updatePayment(@RequestBody PaymentToCreateDTO paymentToUpdate) {
         var entity = service.update(paymentToUpdate);
         return ResponseEntity.ok(entity);
     }

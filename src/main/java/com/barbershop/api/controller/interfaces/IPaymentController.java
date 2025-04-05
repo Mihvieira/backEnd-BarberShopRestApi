@@ -3,6 +3,7 @@ package com.barbershop.api.controller.interfaces;
 import java.util.List;
 
 import com.barbershop.api.dto.payments.PaymentDTO;
+import com.barbershop.api.dto.payments.PaymentToCreateDTO;
 import org.springframework.http.ResponseEntity;
 
 public interface IPaymentController {
@@ -11,10 +12,10 @@ public interface IPaymentController {
 
     ResponseEntity<List<PaymentDTO>> getAllPayments();
 
-    ResponseEntity<PaymentDTO> createPayment(PaymentDTO paymentToCreate);
+    ResponseEntity<PaymentDTO> createPayment(PaymentToCreateDTO paymentToCreate);
 
     ResponseEntity<Void> deletePaymentById(Long id);
 
-    ResponseEntity<PaymentDTO> updatePayment(PaymentDTO paymentToUpdate);
+    ResponseEntity<PaymentDTO> updatePayment(PaymentToCreateDTO paymentToUpdate);
 
 }

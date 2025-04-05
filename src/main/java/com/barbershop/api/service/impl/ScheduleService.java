@@ -1,5 +1,6 @@
 package com.barbershop.api.service.impl;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -41,7 +42,7 @@ public class ScheduleService implements IScheduleService {
     }
 
     @Override
-    public List<ScheduleMinDTO> findBetweenDates(String initial, String end) {
+    public List<ScheduleMinDTO> findBetweenDates(OffsetDateTime initial, OffsetDateTime end) {
         List<Schedule> entities = repository.findByDates(initial, end);
         return entities.stream().map(ScheduleMapper.MAPPER::toMinDTO).collect(Collectors.toList());
     }
@@ -51,6 +52,8 @@ public class ScheduleService implements IScheduleService {
     public ScheduleDTO insert(ScheduleToCreateDTO scheduleToCreate) {
         Schedule entity = ScheduleMapper.MAPPER.toEntity(scheduleToCreate);
         var savedEntity = repository.save(entity);
+        savedEntity.getBarberService();
+        savedEntity.getClient();
         return ScheduleMapper.MAPPER.toDTO(savedEntity);
     }
 

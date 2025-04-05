@@ -1,8 +1,9 @@
 package com.barbershop.api.dto.barberShop;
 
-import java.util.Set;
+import java.util.List;
 
 import com.barbershop.api.entity.WorkingDays;
+
 import jakarta.annotation.Nullable;
 
 public record BarberShopDTO(
@@ -11,7 +12,7 @@ public record BarberShopDTO(
         @Nullable
         String address,
         @Nullable
-        Set<WorkingDays> workingDays
+        List<WorkingDays> workingDays
 ) {
 } 
 

@@ -4,6 +4,7 @@ import java.time.OffsetDateTime;
 
 public record ScheduleMinDTO(
         Long id,
-        OffsetDateTime date
+        OffsetDateTime date,
+        String status
 ) {
 }

@@ -14,10 +14,13 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 public class WorkingDaysService implements IWorkingDaysService {
 
     private final IWorkingDaysRepository repository;
+
+    public WorkingDaysService(IWorkingDaysRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public WorkingDaysDTO findById(Long id) {

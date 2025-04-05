@@ -8,7 +8,8 @@ public record ScheduleToCreateDTO(
         @Nullable Long id,
         Long clientId,
         Long barberServiceId,
-        OffsetDateTime date
+        OffsetDateTime date,
+        @Nullable String status
 ) {
 
 }

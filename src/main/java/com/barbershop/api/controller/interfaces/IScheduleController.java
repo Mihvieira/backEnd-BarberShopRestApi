@@ -1,5 +1,6 @@
 package com.barbershop.api.controller.interfaces;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import com.barbershop.api.dto.schedules.ScheduleDTO;
@@ -13,7 +14,7 @@ public interface IScheduleController {
 
     ResponseEntity<List<ScheduleMinDTO>> getAllSchedule();
 
-    ResponseEntity<List<ScheduleMinDTO>> getScheduleBetweenDates(String initial, String end);
+    ResponseEntity<List<ScheduleMinDTO>> getScheduleBetweenDates(OffsetDateTime inicial, OffsetDateTime end);
 
     ResponseEntity<ScheduleDTO> createSchedule(ScheduleToCreateDTO scheduleToCreate);
 

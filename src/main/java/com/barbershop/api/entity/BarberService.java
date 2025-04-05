@@ -1,8 +1,10 @@
 package com.barbershop.api.entity;
 
 import java.math.BigDecimal;
-import java.time.Duration;
+import java.time.OffsetTime;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,7 +29,8 @@ public class BarberService {
     @Column(unique = true, nullable = false)
     private String name;
     @Column(nullable = false)
-    private Duration duration = Duration.ofMinutes(60);
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss'Z'", timezone = "UTC")
+    private OffsetTime duration;
     @Column(nullable = false)
     private BigDecimal price;
     private String note;
