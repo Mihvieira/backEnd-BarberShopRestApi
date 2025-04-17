@@ -1,7 +1,6 @@
 package com.barbershop.api.controller.interfaces;
 
 import com.barbershop.api.dto.workingDays.WorkingDaysDTO;
-import com.barbershop.api.entity.WorkingDays;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

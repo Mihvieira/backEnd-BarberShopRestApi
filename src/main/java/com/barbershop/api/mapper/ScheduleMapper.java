@@ -24,6 +24,7 @@ public interface ScheduleMapper {
     )
     ScheduleDTO toDTO(Schedule schedule);
 
+    @Mapping(target = "clientName", source = "client.name")
     ScheduleMinDTO toMinDTO(Schedule schedule);
 
     @Mapping(target = "client.id", source = "clientId")
