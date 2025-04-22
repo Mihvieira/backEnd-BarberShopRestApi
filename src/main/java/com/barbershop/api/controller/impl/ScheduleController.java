@@ -66,7 +66,7 @@ public class ScheduleController implements IScheduleController {
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Void> deleteScheduleById(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @Override

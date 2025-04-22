@@ -54,6 +54,6 @@ public class WorkingDaysController implements IWorkingDaysController {
     @DeleteMapping(value = "{id}")
     public ResponseEntity<WorkingDaysDTO> delete(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 }

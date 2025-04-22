@@ -50,7 +50,7 @@ public class ClientController implements IClientController {
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Void> deleteClientById(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @Override

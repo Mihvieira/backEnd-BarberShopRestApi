@@ -56,7 +56,7 @@ public class BarberServiceController implements IBarberServiceController {
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Void> deleteBarberServiceById(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @Override

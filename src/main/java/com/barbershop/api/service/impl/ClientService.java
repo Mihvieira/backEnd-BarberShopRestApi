@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
+import com.barbershop.api.controller.impl.ClientController;
 import com.barbershop.api.dto.clients.ClientDTO;
 import com.barbershop.api.dto.clients.ClientMinDTO;
 import com.barbershop.api.dto.clients.ClientPaymentDTO;
@@ -66,10 +67,24 @@ public class ClientService implements IClientService {
     }
 
     @Override
+    @Transactional
     public ClientDTO update(ClientDTO clientToUpdate) {
         if (clientToUpdate.id() == null) {
             throw new RuntimeException("Id must not be null");
-        }
-        return insert(clientToUpdate);
+        } else{
+            Client client = repository.findById(clientToUpdate.id())
+            .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado."));
+            if(client.getName().equalsIgnoreCase(clientToUpdate.name())){
+                repository.updateByName(clientToUpdate.name(), client.getId());
+                client.setName(clientToUpdate.name());
+            }else if(client.getEmail().equalsIgnoreCase(clientToUpdate.email())){
+                repository.updateByEmail(clientToUpdate.email(), client.getId());
+                client.setEmail(clientToUpdate.email());
+            } else if(client.getPhone().equalsIgnoreCase(clientToUpdate.phone())){
+                repository.updateByPhone(clientToUpdate.phone(), client.getId());
+                client.setPhone(clientToUpdate.phone());
+            }
+            return ClientMapper.MAPPER.toDTO(client);
+        }    
     }
 }

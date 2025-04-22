@@ -48,7 +48,7 @@ public class PaymentController implements IPaymentController {
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Void> deletePaymentById(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @Override
