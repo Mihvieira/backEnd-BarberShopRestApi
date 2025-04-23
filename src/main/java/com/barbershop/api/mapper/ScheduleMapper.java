@@ -16,11 +16,8 @@ public interface ScheduleMapper {
 
     ScheduleMapper MAPPER = Mappers.getMapper(ScheduleMapper.class);
 
-    @Mapping(target = "startTime", expression = "java(calcStartTime(schedule.getDate()))")
-    @Mapping(target = "endTime", expression = "java(calcEndTime(" +
-            "schedule.getDate(), " +
-            "schedule.getBarberService().getDuration())" +
-            ")"
+    @Mapping(target = "startTime", expression = "java(schedule.calcStartTime())")
+    @Mapping(target = "endTime", expression = "java(schedule.calcEndTime())"
     )
     ScheduleDTO toDTO(Schedule schedule);
 
@@ -30,17 +27,5 @@ public interface ScheduleMapper {
     @Mapping(target = "client.id", source = "clientId")
     @Mapping(target = "barberService.id", source = "barberServiceId")
     Schedule toEntity(ScheduleToCreateDTO scheduleToCreateDTO);
-
-    default String calcStartTime(OffsetDateTime date) {
-        return date != null ? date.getHour() + ":" + date.getMinute() : null;
-    }
-
-    default String calcEndTime(OffsetDateTime date, OffsetTime duration) {
-        if (date != null && duration != null) {
-            OffsetDateTime endTime = date.plusHours(duration.getHour()).plusMinutes(duration.getMinute());
-            return endTime.getHour() + ":" + endTime.getMinute();
-        }
-        return null;
-    }
 
 }

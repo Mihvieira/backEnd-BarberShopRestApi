@@ -1,6 +1,7 @@
 package com.barbershop.api.entity;
 
 import java.time.OffsetDateTime;
+import java.time.OffsetTime;
 
 import com.barbershop.api.entity.utils.ScheduleStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -41,5 +42,17 @@ public class Schedule {
     public Schedule() {
     }
 
+    public String calcStartTime() {
+        return this.date != null ? this.date.getHour() + ":" + this.date.getMinute() : null;
+    }
+
+    public String calcEndTime() {
+        var duration = this.barberService.getDuration();
+        if (this.date != null && duration != null) {
+            OffsetDateTime endTime = this.date.plusHours(duration.getHour()).plusMinutes(duration.getMinute());
+            return endTime.getHour() + ":" + endTime.getMinute();
+        }
+        return null;
+    }
 
 }
